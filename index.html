@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title id="page-title">Thiên Trang & Khánh Dũng | The Melody of Romance</title>
+    
+    <meta name="referrer" content="no-referrer"> 
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@200;300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* HỆ THỐNG MÀU ĐỒNG NHẤT */
+            --white: #ffffff;
+            --cream-light: #FAF7F2;   
+            --cream-base: #F4EFEA;    
+            
+            --fluid-1: #EFE5D8; 
+            --fluid-2: #F9F4EE; 
+            --fluid-3: #E5D3C1; 
+            --fluid-4: #DBC4AC; 
+            
+            --wood-medium: #A47551;    
+            --wood-dark: #8B6547;      
+            --wood-deep: #24150D; 
+            --accent-gold: #CBA07C;
+            --border-light: rgba(139, 101, 71, 0.3);
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent;}
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--cream-base);
+            color: var(--wood-deep);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            width: 100%;
+        }
+
+        body.lock-scroll { height: 100vh; overflow: hidden; }
+
+        h1, h2, h3, .serif { font-family: 'Cormorant Garamond', serif; font-weight: 500; }
+        .script { font-family: 'Great Vibes', cursive; }
+
+        /* --- GLOBAL AOS --- */
+        [data-aos] { opacity: 0; transform: translateY(40px); transition: opacity 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        [data-aos].visible { opacity: 1; transform: translateY(0); }
+        [data-aos-delay="200"] { transition-delay: 0.2s; }
+        [data-aos-delay="400"] { transition-delay: 0.4s; }
+
+        /* =========================================
+           0A. LANGUAGE SELECTION SCREEN
+           ========================================= */
+        .harmony-lang-screen {
+            position: fixed; inset: 0; z-index: 30000;
+            display: flex; justify-content: center; align-items: center;
+            background-color: var(--cream-base);
+            transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), visibility 1s;
+        }
+
+        .elegant-panel {
+            width: 90%; max-width: 440px;
+            background-color: rgba(250, 247, 242, 0.85);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-radius: 20px; padding: 60px 40px;
+            box-shadow: 0 20px 50px rgba(36, 21, 13, 0.04);
+            display: flex; flex-direction: column; align-items: center;
+            transform: translateY(15px); opacity: 0;
+            animation: panelFadeIn 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.1s;
+        }
+
+        @keyframes panelFadeIn { to { transform: translateY(0); opacity: 1; } }
+
+        .lang-header-section { display: flex; flex-direction: column; align-items: center; text-align: center; width: 100%; margin-bottom: 45px; }
+        .title-block { display: flex; flex-direction: column; gap: 2px; }
+        .title-bilingual { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 9vw, 3.8rem); font-weight: 500; color: var(--wood-deep); line-height: 1; margin: 0; }
+        
+        .desc-block { display: flex; flex-direction: column; gap: 6px; position: relative; margin-top: 20px; }
+        .desc-block::before { content: ''; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); width: 20px; height: 1px; background-color: var(--wood-medium); opacity: 0.5; }
+        .desc-text { font-family: 'Montserrat', sans-serif; font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; color: var(--wood-dark); font-weight: 500; margin: 0; }
+
+        .lang-options { display: flex; flex-direction: column; width: 100%; gap: 15px; }
+        .lang-btn { display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 20px 25px; background: rgba(255, 255, 255, 0.4); border: 1px solid rgba(139, 101, 71, 0.25); border-radius: 12px; cursor: pointer; outline: none; transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); position: relative; overflow: hidden; }
+        .lang-btn::before { content: ''; position: absolute; inset: 0; background: var(--wood-deep); transform: scaleX(0); transform-origin: left; z-index: 1; transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        .btn-text-group { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: flex-start; gap: 2px; }
+        .lang-btn-name { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 500; color: var(--wood-deep); transition: color 0.4s; line-height: 1; }
+        .lang-code { font-family: 'Montserrat', sans-serif; font-size: 0.65rem; font-weight: 600; letter-spacing: 3px; color: var(--wood-medium); transition: color 0.4s; text-transform: uppercase; }
+        .lang-arrow-icon { position: relative; z-index: 2; width: 24px; height: 24px; stroke: var(--wood-deep); transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); }
+
+        @media (hover: hover) {
+            .lang-btn:hover { border-color: var(--wood-deep); box-shadow: 0 10px 25px rgba(36, 21, 13, 0.08); }
+            .lang-btn:hover::before { transform: scaleX(1); }
+            .lang-btn:hover .lang-btn-name { color: var(--white); transform: translateX(5px); }
+            .lang-btn:hover .lang-code { color: rgba(255,255,255,0.7); transform: translateX(5px); }
+            .lang-btn:hover .lang-arrow-icon { stroke: var(--white); transform: translateX(5px); }
+        }
+        
+        .lang-btn.selected { border-color: var(--wood-deep); box-shadow: 0 15px 30px rgba(36, 21, 13, 0.15); }
+        .lang-btn.selected::before { transform: scaleX(1); }
+        .lang-btn.selected .lang-btn-name { color: var(--white); transform: translateX(10px); }
+        .lang-btn.selected .lang-code { color: rgba(255,255,255,0.7); transform: translateX(10px); }
+        .lang-btn.selected .lang-arrow-icon { stroke: var(--white); transform: translateX(10px); }
+
+        .harmony-lang-screen.exiting { opacity: 0; visibility: hidden; }
+        .harmony-lang-screen.exiting .elegant-panel { transform: scale(1.05); filter: blur(8px); transition: all 0.8s ease; }
+
+        /* =========================================
+           0B. PRELOADERS & LOADER TIMING
+           ========================================= */
+        .initial-loader { position: fixed; inset: 0; z-index: 20000; background: var(--cream-base); display: flex; flex-direction: column; justify-content: center; align-items: center; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.8s ease, visibility 0.8s; }
+        .initial-loader.active { opacity: 1; visibility: visible; pointer-events: auto; }
+        
+        .loading-text { font-family: 'Montserrat', sans-serif; font-size: 0.8rem; letter-spacing: 4px; text-transform: uppercase; color: var(--wood-dark); margin-bottom: 20px; animation: pulseText 1.5s infinite alternate; text-align: center;}
+        .progress-bar-container { width: 200px; height: 2px; background: rgba(139, 101, 71, 0.2); position: relative; border-radius: 2px; }
+        .progress-bar { height: 100%; background: var(--wood-dark); width: 0%; border-radius: 2px; transition: width 2.5s cubic-bezier(0.4, 0, 0.2, 1); }
+        .loading-heart { position: absolute; top: -12px; left: 0%; transform: translateX(-50%); font-size: 1.2rem; color: var(--wood-dark); transition: left 2.5s cubic-bezier(0.4, 0, 0.2, 1); }
+        @keyframes pulseText { 0% { opacity: 0.5; } 100% { opacity: 1; } }
+
+        .preloader-screen { position: fixed; inset: 0; z-index: 10000; background: var(--cream-base); display: flex; flex-direction: column; justify-content: center; align-items: center; transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1); cursor: pointer; }
+        .preloader-screen.opened { transform: translateY(-100vh); pointer-events: none; }
+
+        .preloader-content-wrap { display: flex; flex-direction: column; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: opacity 0.8s ease, visibility 0.8s; }
+        .preloader-content-wrap.ready { opacity: 1; visibility: visible; }
+        
+        .preloader-text { text-align: center; color: var(--wood-deep); margin-bottom: 40px; }
+        .preloader-text .highlight { color: var(--wood-deep); font-family: 'Cormorant Garamond', serif; font-weight: 500; display: block; font-size: 2rem; line-height: 1; margin-bottom: 15px; }
+        .preloader-action { font-family: 'Montserrat', sans-serif; font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase; color: var(--wood-dark); }
+        .dots::after { content: ''; display: inline-block; width: 15px; text-align: left; animation: typingDots 1.5s infinite steps(4, end); }
+        @keyframes typingDots { 0%, 100% { content: ''; } 25% { content: '.'; } 50% { content: '..'; } 75% { content: '...'; } }
+
+        .turntable { position: relative; width: 280px; height: 280px; background: linear-gradient(135deg, #ffffff 0%, #f9f6f0 100%); border-radius: 20px; padding: 15px; box-shadow: 20px 20px 50px rgba(139, 101, 71, 0.1), inset 2px 2px 5px #fff; transition: transform 0.4s ease; border: 1px solid #fff; }
+        @media (min-width: 768px) { .turntable { width: 320px; height: 320px; } }
+        .preloader-screen:hover .turntable { transform: scale(1.03) translateY(-5px); }
+        .platter { width: 100%; height: 100%; border-radius: 50%; background: linear-gradient(145deg, #e6e6e6, #ffffff); box-shadow: 0 5px 15px rgba(0,0,0,0.1); display: flex; justify-content: center; align-items: center; border: 2px solid #ddd; position: relative; z-index: 1;}
+        .vinyl-record { width: 95%; height: 95%; border-radius: 50%; background: #111; position: relative; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3); animation: spin 3s linear infinite; animation-play-state: paused; }
+        .vinyl-record.is-spinning { animation-play-state: running; }
+        .vinyl-record::before { content: ''; position: absolute; inset: 15px; border-radius: 50%; background: repeating-radial-gradient(#111, #111 2px, #1a1a1a 3px, #111 4px); opacity: 0.5; }
+        .vinyl-label { position: relative; width: 35%; height: 35%; border-radius: 50%; z-index: 2; background-image: url('Record.png'); background-size: cover; background-position: center; border: 3px solid #CBA07C; display: flex; justify-content: center; align-items: center; }
+        .vinyl-hole { position: relative; width: 12px; height: 12px; border-radius: 50%; background: #ddd; z-index: 3; box-shadow: inset 0 3px 5px rgba(0,0,0,0.6); }
+        .tonearm-container { position: absolute; top: 20px; right: 20px; width: 50px; height: 160px; transform-origin: 25px 25px; transform: rotate(-25deg); transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); z-index: 10; pointer-events: none;}
+        .turntable.active .tonearm-container { transform: rotate(15deg); }
+        .tonearm-pivot { position: absolute; top: 5px; left: 5px; width: 40px; height: 40px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #fff, #CBA07C, var(--wood-dark)); box-shadow: 2px 5px 10px rgba(0,0,0,0.3); z-index: 12;}
+        .tonearm-rod { position: absolute; top: 25px; left: 21px; width: 8px; height: 130px; background: linear-gradient(90deg, var(--wood-medium), #fff, var(--wood-medium)); border-radius: 4px; z-index: 11; box-shadow: 2px 2px 5px rgba(0,0,0,0.2);}
+        .tonearm-head { position: absolute; bottom: -5px; left: 8px; width: 22px; height: 35px; background: linear-gradient(135deg, var(--wood-dark), #CBA07C); border-radius: 4px; transform: rotate(20deg); z-index: 11; box-shadow: 3px 3px 6px rgba(0,0,0,0.3);}
+
+        /* =========================================
+           1. HERO MASTER SECTION
+           ========================================= */
+        .hero-master { position: relative; width: 100%; height: 100vh; min-height: 650px; display: flex; flex-direction: column; justify-content: center; align-items: center; overflow: hidden; background-color: var(--cream-base); }
+        .fluid-bg { position: absolute; inset: -20%; z-index: 0; pointer-events: none; overflow: hidden; filter: blur(90px); opacity: 0.8; }
+        .blob { position: absolute; border-radius: 50%; animation: fluidMotion infinite alternate ease-in-out; will-change: transform, opacity; }
+        .blob-1 { width: 50vw; height: 50vw; min-width: 400px; min-height: 400px; background-color: var(--fluid-1); top: 10%; left: 10%; animation-duration: 9s; }
+        .blob-2 { width: 60vw; height: 60vw; min-width: 500px; min-height: 500px; background-color: var(--fluid-2); bottom: 10%; right: 5%; animation-duration: 12s; animation-delay: -2s; }
+        .blob-3 { width: 55vw; height: 55vw; min-width: 450px; min-height: 450px; background-color: var(--fluid-3); top: 40%; left: 40%; animation-duration: 15s; animation-delay: -5s; opacity: 0.7; }
+        .blob-4 { width: 45vw; height: 45vw; min-width: 350px; min-height: 350px; background-color: var(--fluid-4); bottom: 20%; left: -10%; animation-duration: 11s; animation-delay: -8s; }
+        @keyframes fluidMotion { 0% { transform: translate(0, 0) scale(1); } 50% { transform: translate(8vw, 12vh) scale(1.1); } 100% { transform: translate(-8vw, -10vh) scale(0.9); } }
+
+        .particles-layer { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+        .particle { position: absolute; bottom: -10%; background: radial-gradient(circle at center, rgba(255,255,255,1) 0%, rgba(255,255,255,0.2) 70%, transparent 100%); border-radius: 50%; animation: floatUp linear infinite; will-change: transform, opacity; }
+        .p1 { width: 15px; height: 15px; left: 15%; animation-duration: 7s; animation-delay: 0s; opacity: 0.7; filter: blur(1px); }
+        .p2 { width: 25px; height: 25px; left: 30%; animation-duration: 10s; animation-delay: 2s; opacity: 0.5; filter: blur(3px); }
+        .p3 { width: 8px; height: 8px; left: 55%; animation-duration: 6s; animation-delay: 1s; opacity: 0.9; }
+        .p4 { width: 35px; height: 35px; left: 70%; animation-duration: 12s; animation-delay: 4s; opacity: 0.3; filter: blur(4px); }
+        .p5 { width: 12px; height: 12px; left: 85%; animation-duration: 8s; animation-delay: 0.5s; opacity: 0.8; filter: blur(1px); }
+        .p6 { width: 20px; height: 20px; left: 45%; animation-duration: 9s; animation-delay: 3s; opacity: 0.6; filter: blur(2px); }
+        .p7 { width: 10px; height: 10px; left: 5%; animation-duration: 7.5s; animation-delay: 5s; opacity: 0.7; }
+        .p8 { width: 30px; height: 30px; left: 80%; animation-duration: 14s; animation-delay: 1s; opacity: 0.4; filter: blur(5px); }
+        @keyframes floatUp { 0% { transform: translateY(0) scale(0.8); opacity: 0; } 10% { opacity: 1; } 80% { opacity: 1; } 100% { transform: translateY(-120vh) scale(1.5); opacity: 0; } }
+
+        .hero-content { position: relative; z-index: 10; width: 100%; max-width: 1200px; padding: 0 5vw; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        
+        .meta-top { display: flex; align-items: center; justify-content: center; width: 100%; max-width: 600px; margin-bottom: 7vh; opacity: 0; }
+        .hero-master.play-anim .meta-top { animation: slideUpFade 1.2s 0.3s forwards cubic-bezier(0.2, 0.8, 0.2, 1); }
+        
+        .meta-line { flex-grow: 1; height: 1px; background-color: rgba(139, 101, 71, 0.3); }
+        .meta-top span { font-size: clamp(0.7rem, 2vw, 0.9rem); letter-spacing: 5px; text-transform: uppercase; color: var(--wood-dark); font-weight: 600; padding: 0 20px; white-space: nowrap; }
+
+        .hero-names-wrap { position: relative; display: flex; flex-direction: column; width: 100%; max-width: 800px; gap: 1.5vh; transition: max-width 0.6s ease; }
+        .hero-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.2rem, 14vw, 9rem); white-space: nowrap; letter-spacing: -1px; font-weight: 500; line-height: 0.85; color: var(--wood-deep); margin: 0; overflow: hidden; padding-bottom: 10px; z-index: 2; transition: font-size 0.6s ease; }
+        .name-inner { display: inline-block; transform: translateY(110%); }
+        
+        /* CĂN CHỈNH KÉO GẦN 2 CÁI TÊN LẠI VỚI NHAU */
+        .name-bride { text-align: left; margin-left: 12%; }
+        .hero-master.play-anim .name-bride .name-inner { animation: revealText 1.2s 0.5s forwards cubic-bezier(0.77, 0, 0.175, 1); }
+        
+        .name-groom { text-align: right; margin-right: 12%; }
+        .hero-master.play-anim .name-groom .name-inner { animation: revealText 1.2s 0.7s forwards cubic-bezier(0.77, 0, 0.175, 1); }
+        
+        .hero-ampersand { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.8); font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 400; font-size: clamp(4.5rem, 16vw, 12rem); color: var(--wood-medium); line-height: 1; margin: 0; opacity: 0; z-index: 10; mix-blend-mode: multiply; }
+        .hero-master.play-anim .hero-ampersand { animation: scaleInFade 1.5s 0.9s forwards cubic-bezier(0.2, 0.8, 0.2, 1); }
+
+        .editorial-dates { display: flex; align-items: center; justify-content: center; gap: clamp(20px, 5vw, 50px); margin-top: 8vh; opacity: 0; width: 100%; max-width: 400px; }
+        .hero-master.play-anim .editorial-dates { animation: slideUpFade 1.2s 1.2s forwards cubic-bezier(0.2, 0.8, 0.2, 1); }
+        
+        .date-block { display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1; }
+        .d-city { font-family: 'Montserrat', sans-serif; font-size: clamp(0.7rem, 2vw, 0.9rem); letter-spacing: 5px; font-weight: 600; text-transform: uppercase; color: var(--wood-deep); line-height: 1; margin: 0; text-align: center;}
+        .d-date { font-family: 'Montserrat', sans-serif; font-size: clamp(0.65rem, 2vw, 0.8rem); letter-spacing: 3px; font-weight: 500; color: var(--wood-dark); margin: 0; }
+        .d-divider { width: 1px; height: 35px; background-color: var(--wood-medium); opacity: 0.6; }
+
+        .scroll-indicator-wrap { position: absolute; bottom: 8vh; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; z-index: 10; opacity: 0; }
+        .hero-master.play-anim .scroll-indicator-wrap { animation: fadeIn 1.5s 1.5s forwards; }
+        
+        .scroll-track { width: 2px; height: 40px; background-color: rgba(139, 101, 71, 0.35); position: relative; overflow: hidden; border-radius: 2px; }
+        .scroll-thumb { position: absolute; top: 0; left: 0; width: 100%; height: 40%; background: linear-gradient(to bottom, transparent, var(--wood-deep)); animation: scrollFlow 1.5s cubic-bezier(0.65, 0, 0.35, 1) infinite; }
+
+        @keyframes fadeIn { to { opacity: 1; } }
+        @keyframes revealText { to { transform: translateY(0); } }
+        @keyframes slideUpFade { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes scaleInFade { to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        @keyframes scrollFlow { 0% { transform: translateY(-100%); opacity: 0; } 20% { opacity: 1; } 80% { opacity: 1; } 100% { transform: translateY(250%); opacity: 0; } }
+
+        /* =========================================
+           TÙY CHỈNH CSS CHO TIẾNG ANH (Tên ngắn hơn)
+           ========================================= */
+        body[data-lang="en"] .hero-name { 
+            font-size: clamp(4.5rem, 18vw, 11rem); 
+            letter-spacing: -2px;
+        }
+        body[data-lang="en"] .hero-names-wrap { 
+            max-width: 700px; 
+        }
+        body[data-lang="en"] .f-name { 
+            font-size: clamp(3rem, 10vw, 5.5rem); 
+        }
+
+        /* =========================================
+           2. THE QUOTE & GALLERY
+           ========================================= */
+        .story-section { padding: 15vh 5vw; background: var(--cream-light); text-align: center; }
+        .quote-text { font-size: clamp(1.6rem, 4vw, 2.5rem); line-height: 1.5; color: var(--wood-deep); max-width: 800px; margin: 0 auto; }
+        .quote-text .script { font-size: clamp(2.5rem, 6vw, 4rem); color: var(--wood-medium); display: block; margin-top: 20px; }
+        .quote-mark { color: var(--wood-medium); font-family: 'Cormorant Garamond', serif; font-style: normal; }
+        .script .quote-mark { font-size: clamp(1.6rem, 4vw, 2.5rem); line-height: 1; }
+
+        @media screen and (max-width: 430px) { .quote-text{font-size: 25px;} }
+        @media screen and (max-width: 420px) { .quote-text{font-size: 29px;} }
+        @media screen and (max-width: 335px) { .quote-text{font-size: 27px;} }
+
+        .fs-gallery-section { position: relative; height: 100vh; width: 100%; overflow: hidden; background: #24150D; }
+        .fs-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 2s ease-in-out; }
+        .fs-slide.active { opacity: 1; z-index: 2; }
+        .fs-slide img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.1); transition: transform 6s linear; }
+        .fs-slide.active img { transform: scale(1); }
+        .fs-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(36, 21, 13, 0) 50%, rgba(36, 21, 13, 0.75) 100%); z-index: 3; pointer-events: none; }
+        .fs-scroll-indicator { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); z-index: 4; display: flex; flex-direction: column; align-items: center; gap: 10px; color: var(--white); opacity: 0.9; width: max-content; }
+        .fs-scroll-indicator span { font-family: 'Montserrat', sans-serif; font-size: 0.6rem; letter-spacing: 4px; text-transform: uppercase; margin-right: -4px; text-shadow: 0 2px 4px rgba(36, 21, 13, 0.5); text-align: center;}
+        .fs-line { width: 1px; height: 40px; background: rgba(255,255,255,0.3); position: relative; overflow: hidden; }
+        .fs-line::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--white); animation: scrollDownLine 2s infinite cubic-bezier(0.65, 0, 0.35, 1); }
+        @keyframes scrollDownLine { 0% { transform: translateY(-100%); } 50% { transform: translateY(0%); } 100% { transform: translateY(100%); } }
+
+        /* =========================================
+           3. INTERACTIVE VENUES (REFINED LEFT ALIGNED)
+           ========================================= */
+        .interactive-venues { padding: 8vh 5vw 15vh 5vw; background: var(--cream-base); }
+        .sec-title { text-align: center; margin-bottom: 40px; }
+        .sec-title span { font-size: 0.65rem; letter-spacing: 5px; text-transform: uppercase; color: var(--wood-dark); display: block; margin-bottom: 8px;}
+        .sec-title h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 6vw, 3rem); color: var(--wood-deep); margin: 0; line-height: 1.1; font-weight: 500;}
+
+        .venue-split-container { display: flex; flex-direction: column; max-width: 1000px; margin: 0 auto; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 50px rgba(36, 21, 13, 0.1); }
+        @media (min-width: 768px) { .venue-split-container { flex-direction: row; height: 60vh; min-height: 500px; } }
+
+        .vs-card[data-aos] { opacity: 1; transform: none; transition: flex 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
+        .vs-card { flex: 1; position: relative; cursor: pointer; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; min-height: 350px; }
+        @media (min-width: 768px) { .vs-card { min-height: auto; } }
+
+        .vs-reveal-mask { position: absolute; inset: 0; z-index: 3; background-color: var(--cream-base); transform-origin: bottom; transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1); }
+        .vs-card.visible .vs-reveal-mask { transform: scaleY(0); } 
+
+        .vs-bg { position: absolute; inset: 0; z-index: 1; }
+        .vs-bg img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.65); transform: scale(1.3); transition: transform 1.6s cubic-bezier(0.25, 1, 0.5, 1), filter 1s; }
+        .vs-card.visible .vs-bg img { transform: scale(1.05); } 
+        
+        .vs-overlay-gradient { position: absolute; inset: 0; z-index: 2; background: linear-gradient(to top, rgba(20, 12, 8, 0.95) 0%, rgba(20, 12, 8, 0.4) 45%, transparent 100%); opacity: 0; transition: opacity 1.2s ease; }
+        .vs-card.visible .vs-overlay-gradient { opacity: 0.8; }
+
+        .vs-content { position: relative; z-index: 4; width: 100%; padding: 40px 30px; display: flex; flex-direction: column; align-items: flex-start; text-align: left; opacity: 0; transform: translateY(30px); transition: opacity 1s ease, transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        .vs-card.visible .vs-content { opacity: 1; transform: translateY(0); }
+
+        .vs-card:nth-child(1) .vs-reveal-mask { transition-delay: 0s; }
+        .vs-card:nth-child(1) .vs-bg img { transition-delay: 0s; }
+        .vs-card:nth-child(1) .vs-overlay-gradient { transition-delay: 0.2s; }
+        .vs-card:nth-child(1) .vs-content { transition-delay: 0.3s; }
+
+        .vs-card:nth-child(2) .vs-reveal-mask { transition-delay: 0.2s; }
+        .vs-card:nth-child(2) .vs-bg img { transition-delay: 0.2s; }
+        .vs-card:nth-child(2) .vs-overlay-gradient { transition-delay: 0.4s; }
+        .vs-card:nth-child(2) .vs-content { transition-delay: 0.5s; }
+
+        .vs-card.is-open { flex: 2.2; }
+        .vs-card.is-open .vs-bg img { filter: brightness(0.85); transform: scale(1); }
+        .vs-card.is-open .vs-overlay-gradient { opacity: 1; }
+
+        .vs-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 8vw, 3.5rem); font-weight: 400; line-height: 1; margin: 0 0 10px 0; color: #fff; text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); }
+
+        .vs-trigger { display: inline-flex; align-items: center; gap: 8px; font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; font-weight: 500; color: rgba(255, 255, 255, 0.9); background: transparent; border: none; padding: 0; transition: all 0.4s ease; }
+        .chevron-anim { width: 16px; height: 16px; stroke: var(--accent-gold); animation: bounceDown 1.5s infinite ease-in-out; }
+        @keyframes bounceDown { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
+
+        .vs-card.is-open .vs-trigger { opacity: 0; pointer-events: none; height: 0; padding: 0; margin: 0; border: none; overflow: hidden;}
+        
+        .vs-details-wrapper { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.7s cubic-bezier(0.2, 0.8, 0.2, 1); width: 100%; max-width: 400px;}
+        .vs-card.is-open .vs-details-wrapper { grid-template-rows: 1fr; margin-top: 5px; }
+
+        .vs-details-inner { overflow: hidden; display: flex; flex-direction: column; align-items: flex-start;}
+
+        .info-row { display: flex; align-items: flex-start; gap: 12px; margin-top: 15px; text-align: left; width: 100%; opacity: 0; transform: translateY(15px); transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        .info-row svg { width: 18px; height: 18px; stroke: var(--accent-gold); flex-shrink: 0; margin-top: 2px; opacity: 0.9;}
+        .info-text { display: flex; flex-direction: column; gap: 6px; }
+        .info-label { font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(255, 255, 255, 0.5); font-weight: 500; }
+        .info-value { font-size: 0.9rem; font-weight: 400; color: rgba(255, 255, 255, 0.95); line-height: 1.6; }
+        
+        .map-btn { opacity: 0; transform: translateY(15px); margin-top: 20px; display: inline-flex; align-items: center; gap: 8px; background: transparent; color: var(--accent-gold); text-decoration: none; padding: 8px 22px; border-radius: 40px; font-size: 0.65rem; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; border: 1px solid rgba(203, 160, 124, 0.4); transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        .map-btn svg { width: 14px; height: 14px; stroke: var(--accent-gold); }
+        .map-btn:hover { background: var(--accent-gold); color: var(--wood-deep); }
+        .map-btn:hover svg { stroke: var(--wood-deep); }
+
+        .vs-card.is-open .info-row:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0.3s; }
+        .vs-card.is-open .info-row:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.4s; }
+        .vs-card.is-open .map-btn { opacity: 1; transform: translateY(0); transition-delay: 0.5s; }
+
+        .music-burst { position: absolute; pointer-events: none; color: var(--accent-gold); font-size: 1rem; opacity: 0; z-index: 5; }
+        @keyframes floatMusic { 0% { transform: translateY(0) scale(0.5); opacity: 1; } 100% { transform: translateY(-80px) rotate(20deg) scale(1.2); opacity: 0; } }
+
+        /* =========================================
+           4. CALENDAR (SCANNING)
+           ========================================= */
+        .modern-cal-section { padding: 8vh 5vw; background: var(--cream-light); text-align: center; }
+        .cal-wrapper { max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 30px; }
+        
+        .cal-week-card { background: var(--white); border-radius: 20px; padding: 30px 20px; box-shadow: 0 10px 30px rgba(139, 101, 71, 0.05); border: 1px solid rgba(139, 101, 71, 0.1); position: relative; overflow: hidden;}
+        
+        .cal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; padding: 0 5px; font-family: 'Montserrat', sans-serif; font-size: clamp(0.55rem, 2.5vw, 0.75rem); letter-spacing: 2px; text-transform: uppercase; color: var(--wood-deep); }
+        .cal-header span, .cal-header b { white-space: nowrap; } 
+        .cal-header b { color: var(--wood-dark); font-weight: 500;}
+        
+        .cal-row { display: flex; justify-content: space-between; align-items: center; position: relative; }
+        
+        .cal-day { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 40px; height: 55px; border-radius: 12px; gap: 4px; position: relative; z-index: 2; transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); background: transparent; }
+        @media (min-width: 600px) { .cal-day { width: 55px; height: 75px; gap: 6px;} }
+        
+        .cd-name { font-size: 0.6rem; color: var(--wood-dark); text-transform: uppercase; font-weight: 400; transition: color 0.3s;}
+        .cd-num { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--wood-deep); transition: color 0.3s;}
+
+        .cal-day.scanning { background: rgba(139, 101, 71, 0.08); transform: scale(1.05); }
+
+        .cal-day.final-active { background: linear-gradient(135deg, var(--wood-dark), var(--accent-gold)); transform: scale(1.15) translateY(-4px); box-shadow: 0 10px 20px rgba(139, 101, 71, 0.2); animation: finalPop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+        .cal-day.final-active .cd-name, .cal-day.final-active .cd-num { color: var(--white); }
+        .cal-day.final-active .cd-num { font-size: 1.7rem; }
+        .cal-day.final-active::before { content: ''; position: absolute; inset: -12px; background: radial-gradient(circle, rgba(203, 160, 124, 0.3) 0%, transparent 70%); z-index: -1; animation: breatheGlow 2.5s infinite alternate; }
+
+        @keyframes finalPop { 0% { transform: scale(1); } 50% { transform: scale(1.25) translateY(-8px); } 100% { transform: transform scale(1.15) translateY(-4px); } }
+        @keyframes breatheGlow { 0% { opacity: 0.3; transform: scale(0.9); } 100% { opacity: 1; transform: scale(1.1); } }
+
+        .cal-heart-splash { position: absolute; top: -15px; font-size: 1.2rem; color: #ff7b93; opacity: 0; pointer-events: none; z-index: 5;}
+        @keyframes splashHeart { 0% { transform: translateY(0) scale(0.5); opacity: 1; } 100% { transform: translateY(-30px) scale(1.2); opacity: 0; } }
+
+        /* =========================================
+           5. RSVP FORM (CUSTOM DROPDOWN UI FIX)
+           ========================================= */
+        .rsvp-section { padding: 10vh 5vw 15vh 5vw; background: var(--cream-base); text-align: center; }
+        .rsvp-aesthetic { max-width: 650px; margin: 0 auto 50px auto; display: flex; flex-direction: column; align-items: center; position: relative; padding: 30px 20px; }
+        .rsvp-aesthetic::before, .rsvp-aesthetic::after { content: ''; position: absolute; left: 50%; transform: translateX(-50%); width: 40px; height: 1px; background: var(--wood-medium); opacity: 0.4; }
+        .rsvp-aesthetic::before { top: 0; } .rsvp-aesthetic::after { bottom: 0; }
+        .rsvp-label { font-family: 'Montserrat', sans-serif; font-size: 0.65rem; letter-spacing: 5px; text-transform: uppercase; color: var(--wood-dark); margin-bottom: 20px; }
+        .rsvp-simple-text { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.4rem, 3.5vw, 2rem); color: var(--wood-deep); line-height: 1.6; text-align: center; margin: 0; font-weight: 400; }
+
+        .form-window { position: relative; max-width: 600px; margin: 0 auto; background: var(--white); border-radius: 20px; padding: 40px 30px; box-shadow: 0 20px 40px rgba(139, 101, 71, 0.1); border: 1px solid rgba(139, 101, 71, 0.15); text-align: left;}
+        .form-group { margin-bottom: 25px; }
+        .form-group label { display: block; font-weight: 500; font-size: 0.95rem; margin-bottom: 15px; color: var(--wood-deep); line-height: 1.4;}
+        .form-input, textarea.form-input { width: 100%; padding: 16px 20px; border: 1px solid rgba(139, 101, 71, 0.2); border-radius: 12px; font-family: 'Montserrat', sans-serif; background: var(--cream-base); outline: none; transition: border-color 0.3s; font-size: 0.95rem; color: var(--wood-deep);}
+        .form-input:focus { border-color: var(--wood-dark); }
+        textarea.form-input { resize: vertical; min-height: 100px; }
+
+        .radio-label { display: flex; align-items: center; padding: 15px 20px; background: var(--cream-base); border: 1px solid rgba(139, 101, 71, 0.2); border-radius: 12px; margin-bottom: 12px; cursor: pointer; transition: all 0.3s ease; }
+        .radio-label input[type="radio"] { transform: scale(1.4); margin: 0 15px 0 0; flex-shrink: 0; cursor: pointer; accent-color: var(--wood-dark);}
+        .radio-label span { font-size: 0.95rem; color: var(--wood-deep); line-height: 1.4; }
+        .radio-label:hover { border-color: var(--accent-gold); box-shadow: 0 5px 15px rgba(203, 160, 124, 0.15); }
+
+        /* CUSTOM DROPDOWN CSS */
+        .custom-dropdown-wrapper { position: relative; width: 100%; user-select: none; }
+        .custom-dropdown-wrapper.disabled { opacity: 0.5; pointer-events: none; }
+        .custom-dropdown-selected {
+            width: 100%; padding: 16px 20px; border: 1px solid rgba(139, 101, 71, 0.2); border-radius: 12px; 
+            font-family: 'Montserrat', sans-serif; background: var(--cream-base); color: var(--wood-deep);
+            font-size: 0.95rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+            transition: border-color 0.3s;
+        }
+        .custom-dropdown-wrapper.open .custom-dropdown-selected { border-color: var(--wood-dark); }
+        .custom-dropdown-selected svg { width: 16px; height: 16px; stroke: var(--wood-dark); transition: transform 0.3s; }
+        .custom-dropdown-wrapper.open .custom-dropdown-selected svg { transform: rotate(180deg); }
+        
+        .custom-dropdown-options {
+            position: absolute; top: calc(100% + 8px); left: 0; right: 0; 
+            background: var(--white); border-radius: 12px; 
+            box-shadow: 0 15px 35px rgba(36, 21, 13, 0.1); border: 1px solid rgba(139, 101, 71, 0.15);
+            list-style: none; padding: 0; margin: 0; 
+            opacity: 0; transform: translateY(-10px); pointer-events: none; 
+            transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); z-index: 100; overflow: hidden;
+        }
+        .custom-dropdown-wrapper.open .custom-dropdown-options { opacity: 1; transform: translateY(0); pointer-events: auto; }
+        
+        .custom-dropdown-options li {
+            padding: 15px 20px; cursor: pointer; font-size: 0.95rem; color: var(--wood-deep);
+            border-bottom: 1px solid rgba(139, 101, 71, 0.05); transition: background 0.3s;
+        }
+        .custom-dropdown-options li:last-child { border-bottom: none; }
+        .custom-dropdown-options li:hover { background: var(--cream-light); color: var(--wood-dark); }
+        
+        .submit-btn { background: var(--wood-dark); color: var(--white); border: none; width: 100%; padding: 18px; border-radius: 12px; font-family: 'Montserrat', sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; margin-top: 15px; transition: transform 0.3s ease; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .submit-btn:hover { transform: translateY(-3px); background: var(--wood-deep); }
+
+        .form-loader-overlay { position: absolute; inset: 0; background: rgba(255,255,255,0.85); backdrop-filter: blur(5px); z-index: 10; display: flex; flex-direction: column; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
+        .form-loader-overlay.active { opacity: 1; visibility: visible; }
+        .form-loader-heart { font-size: 2.5rem; color: var(--wood-dark); animation: pulseHeart 1s infinite alternate; margin-bottom: 15px; }
+        .form-loader-text { font-family: 'Montserrat', sans-serif; font-size: 0.85rem; letter-spacing: 3px; color: var(--wood-dark); text-transform: uppercase; }
+
+        /* =========================================
+           6. FOOTER & ALERTS & WIDGETS
+           ========================================= */
+        .modern-footer { background-color: var(--cream-base); padding: 12vh 5vw 10vh 5vw; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; border-top: 1px solid rgba(139, 101, 71, 0.15); }
+        .f-subtitle { font-family: 'Montserrat', sans-serif; font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; color: var(--wood-dark); margin-bottom: 30px; display: block; font-weight: 500; }
+        .f-title { display: flex; flex-direction: column; align-items: center; gap: 10px; font-family: 'Cormorant Garamond', serif; color: var(--wood-deep); font-weight: 500; margin-bottom: 50px; line-height: 0.8; }
+        .f-groom-row { display: flex; align-items: center; justify-content: center; gap: clamp(10px, 3vw, 20px); }
+        .f-name { font-size: clamp(2.5rem, 8vw, 4.5rem); white-space: nowrap; transition: font-size 0.6s ease;}
+        .f-ft { font-family: 'Great Vibes', cursive; font-size: clamp(1.8rem, 6vw, 3.2rem); color: var(--wood-medium); line-height: 1; }
+        .f-bottom { display: flex; align-items: center; gap: 20px; width: 100%; max-width: 450px; }
+        .f-line { flex-grow: 1; height: 1px; background-color: var(--wood-medium); opacity: 0.4; }
+        .f-logo { font-family: 'Montserrat', sans-serif; font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; color: var(--wood-deep); font-weight: 600; }
+
+        .wedding-alert { position: fixed; inset: 0; background: rgba(36,21,13,0.45); backdrop-filter: blur(8px); display: flex; justify-content: center; align-items: center; z-index: 20000; opacity: 0; visibility: hidden; transition: all .45s ease; padding: 20px; }
+        .wedding-alert.show { opacity: 1; visibility: visible; }
+        .wedding-alert-box { width: 100%; max-width: 480px; background: var(--white); border-radius: 24px; padding: 45px 35px; text-align: center; box-shadow: 0 25px 60px rgba(36,21,13,0.18); border: 1px solid rgba(139,101,71,0.15); transform: translateY(30px) scale(.96); transition: all .45s cubic-bezier(.2,.8,.2,1); }
+        .wedding-alert.show .wedding-alert-box { transform: translateY(0) scale(1); }
+        .alert-heart { font-size: 2.4rem; color: var(--accent-gold); margin-bottom: 15px; animation: pulseHeart 1.8s infinite; }
+        .wedding-alert-box h3 { font-size: clamp(2rem, 5vw, 2.5rem); color: var(--wood-deep); margin-bottom: 14px; }
+        .wedding-alert-box p { font-size: 0.95rem; line-height: 1.8; color: var(--wood-dark); }
+        .wedding-alert-box button { margin-top: 28px; background: var(--wood-dark); color: var(--white); border: none; padding: 14px 28px; border-radius: 999px; cursor: pointer; font-family: 'Montserrat', sans-serif; font-weight: 600; letter-spacing: 1px; transition: .3s ease; }
+        .wedding-alert-box button:hover { background: var(--wood-deep); transform: translateY(-2px); }
+
+        @keyframes pulseHeart { 0%{transform:scale(1);opacity:.7;} 50%{transform:scale(1.15);opacity:1;} 100%{transform:scale(1);opacity:.7;} }
+
+        .floating-music-btn { position: fixed; bottom: 35px; right: 35px; width: 40px; height: 40px; z-index: 10000; cursor: pointer; display: flex; justify-content: center; align-items: center; transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); opacity: 1; visibility: visible; border-radius: 50%; background: rgba(250, 247, 242, 0.65); backdrop-filter: blur(8px); border: 1px solid rgba(139, 101, 71, 0.15); box-shadow: 0 4px 15px rgba(36, 21, 13, 0.08); }
+        .floating-music-btn.hidden { opacity: 0; visibility: hidden; transform: scale(0.5) translateY(20px); }
+        .floating-music-btn:hover { transform: scale(1.1); background: rgba(250, 247, 242, 0.9); box-shadow: 0 8px 25px rgba(36, 21, 13, 0.15); }
+        .music-core-icon { width: 16px; height: 16px; fill: var(--wood-dark); display: flex; justify-content: center; align-items: center; z-index: 2; }
+        .eq-rect { transform-origin: bottom; transition: transform 0.3s ease; transform: scaleY(0.2); }
+        .playing .eq-rect-1 { animation: eq-play 0.6s infinite alternate ease-in-out; }
+        .playing .eq-rect-2 { animation: eq-play 0.8s infinite alternate ease-in-out 0.2s; }
+        .playing .eq-rect-3 { animation: eq-play 0.5s infinite alternate ease-in-out 0.4s; }
+        @keyframes eq-play { 0% { transform: scaleY(0.2); } 100% { transform: scaleY(1); } }
+        .music-particles { position: absolute; top: 50%; left: 50%; width: 100%; height: 100%; pointer-events: none; z-index: -1; }
+        .particle-item { position: absolute; top: 50%; left: 50%; opacity: 0; font-family: Arial, sans-serif; transform: translate(-50%, 0); }
+        .p-heart-fill { color: var(--accent-gold); font-size: 11px; }
+        .p-note1 { color: var(--wood-dark); font-size: 13px; }
+        .p-note2 { color: var(--wood-medium); font-size: 11px; }
+        .p-heart-line { color: var(--wood-dark); font-size: 12px; font-weight: 100; } 
+        .playing .p-heart-fill { animation: float-up-fade-1 2.8s infinite ease-in 0s; }
+        .playing .p-note1 { animation: float-up-fade-2 3.2s infinite ease-in 0.6s; }
+        .playing .p-note2 { animation: float-up-fade-3 2.5s infinite ease-in 1.2s; }
+        .playing .p-heart-line { animation: float-up-fade-4 3s infinite ease-in 1.8s; }
+        @keyframes float-up-fade-1 { 0% { transform: translate(-50%, 0) scale(0.5); opacity: 0; } 20% { opacity: 0.8; } 100% { transform: translate(-25px, -60px) scale(1.1) rotate(-15deg); opacity: 0; } }
+        @keyframes float-up-fade-2 { 0% { transform: translate(-50%, 0) scale(0.5); opacity: 0; } 20% { opacity: 0.6; } 100% { transform: translate(15px, -70px) scale(1) rotate(10deg); opacity: 0; } }
+        @keyframes float-up-fade-3 { 0% { transform: translate(-50%, 0) scale(0.5); opacity: 0; } 30% { opacity: 0.7; } 100% { transform: translate(-10px, -80px) scale(1.2) rotate(-20deg); opacity: 0; } }
+        @keyframes float-up-fade-4 { 0% { transform: translate(-50%, 0) scale(0.5); opacity: 0; } 20% { opacity: 0.8; } 100% { transform: translate(20px, -65px) scale(1) rotate(15deg); opacity: 0; } }
+    </style>
+</head>
+<body class="lock-scroll">
+
+    <div class="harmony-lang-screen" id="lang-screen">
+        <div class="elegant-panel">
+            <div class="lang-header-section">
+                <div class="title-block">
+                    <h1 class="title-bilingual">Xin chào</h1>
+                    <h1 class="title-bilingual">Welcome</h1>
+                </div>
+                <div class="desc-block" style="margin-top:20px; position:relative;">
+                    <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); width: 20px; height: 1px; background-color: var(--wood-medium); opacity: 0.5;"></div>
+                    <p class="desc-text" style="font-family: 'Montserrat', sans-serif; font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; color: var(--wood-dark); font-weight: 500; margin: 0 0 6px 0;">Lựa chọn ngôn ngữ</p>
+                    <p class="desc-text" style="font-family: 'Montserrat', sans-serif; font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; color: var(--wood-dark); font-weight: 500; margin: 0;">Select your language</p>
+                </div>
+            </div>
+
+            <div class="lang-options">
+                <button class="lang-btn" onclick="selectHarmonyLang(event, 'vi', this)">
+                    <div class="btn-text-group" style="display: flex; flex-direction: column; align-items: flex-start; gap: 2px;">
+                        <span class="lang-btn-name">Tiếng Việt</span>
+                        <span class="lang-code" style="font-family: 'Montserrat', sans-serif; font-size: 0.65rem; font-weight: 600; letter-spacing: 3px; color: var(--wood-medium); text-transform: uppercase;">VN</span>
+                    </div>
+                    <svg class="lang-arrow-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="4" y1="12" x2="20" y2="12"></line><polyline points="14 6 20 12 14 18"></polyline>
+                    </svg>
+                </button>
+                <button class="lang-btn" onclick="selectHarmonyLang(event, 'en', this)">
+                    <div class="btn-text-group" style="display: flex; flex-direction: column; align-items: flex-start; gap: 2px;">
+                        <span class="lang-btn-name">English</span>
+                        <span class="lang-code" style="font-family: 'Montserrat', sans-serif; font-size: 0.65rem; font-weight: 600; letter-spacing: 3px; color: var(--wood-medium); text-transform: uppercase;">EN</span>
+                    </div>
+                    <svg class="lang-arrow-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="4" y1="12" x2="20" y2="12"></line><polyline points="14 6 20 12 14 18"></polyline>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <audio id="bgMusic" loop preload="auto">
+        <source src="https://res.cloudinary.com/dyjolnqwu/video/upload/v1777718125/0502_myr4rk.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="musicToggleBtn" class="floating-music-btn hidden">
+        <div class="music-core-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <rect x="4" y="4" width="3" height="16" rx="1.5" class="eq-rect eq-rect-1" />
+                <rect x="10.5" y="4" width="3" height="16" rx="1.5" class="eq-rect eq-rect-2" />
+                <rect x="17" y="4" width="3" height="16" rx="1.5" class="eq-rect eq-rect-3" />
+            </svg>
+        </div>
+        <div class="music-particles">
+            <div class="particle-item p-heart-fill">♥</div>
+            <div class="particle-item p-note1">♪</div>
+            <div class="particle-item p-note2">♫</div>
+            <div class="particle-item p-heart-line">♡</div>
+        </div>
+    </div>
+
+    <div class="initial-loader" id="initial-loader">
+        <div class="loading-text" data-i18n="mixing">Mixing the love song...</div>
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="p-bar"></div>
+            <div class="loading-heart" id="p-heart">♥</div>
+        </div>
+    </div>
+
+    <div class="preloader-screen" id="preloader">
+        <div class="preloader-content-wrap" id="preloader-content-wrap">
+            <div class="preloader-text">
+                <span class="highlight" data-i18n="melody">The Melody of Romance</span>
+                <div class="preloader-action"><span data-i18n="tap_continue">Chạm để tiếp tục</span><span class="dots"></span></div>
+            </div>
+            <div class="turntable" id="playBtn">
+                <div class="platter">
+                    <div class="vinyl-record" id="record">
+                        <div class="vinyl-label"><div class="vinyl-hole"></div></div>
+                    </div>
+                </div>
+                <div class="tonearm-container" id="tonearm">
+                    <div class="tonearm-pivot"></div>
+                    <div class="tonearm-rod"></div>
+                    <div class="tonearm-head"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="hero-master">
+        <div class="fluid-bg">
+            <div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div><div class="blob blob-4"></div>
+        </div>
+        <div class="particles-layer">
+            <div class="particle p1"></div><div class="particle p2"></div><div class="particle p3"></div><div class="particle p4"></div>
+            <div class="particle p5"></div><div class="particle p6"></div><div class="particle p7"></div><div class="particle p8"></div>
+        </div>
+
+        <div class="hero-content">
+            <div class="meta-top">
+                <div class="meta-line"></div>
+                <span data-i18n="wedding_invitation">Thư Mời Chung Vui</span>
+                <div class="meta-line"></div>
+            </div>
+            
+            <div class="hero-names-wrap">
+                <h1 class="hero-name name-bride"><span class="name-inner" data-i18n="bride_name">Thiên Trang</span></h1>
+                <div class="hero-ampersand">&</div>
+                <h1 class="hero-name name-groom"><span class="name-inner" data-i18n="groom_name">Khánh Dũng</span></h1>
+            </div>
+
+            <div class="editorial-dates">
+                <div class="date-block">
+                    <span class="d-city" data-i18n="city_dl">Đà Lạt</span>
+                    <span class="d-date">24 . 07 . 2026</span>
+                </div>
+                <div class="d-divider"></div>
+                <div class="date-block">
+                    <span class="d-city" data-i18n="city_hcm">TP. HCM</span>
+                    <span class="d-date">08 . 08 . 2026</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="scroll-indicator-wrap">
+            <div class="scroll-track"><div class="scroll-thumb"></div></div>
+        </div>
+    </section>
+
+    <section class="story-section">
+        <div data-aos="fade-up">
+            <h2 class="serif quote-text">
+                <span class="quote-mark">“</span><span data-i18n="quote_1">Giữa những ồn ào của thế gian, chỉ muốn bình yên nắm tay một người</span> 
+                <span class="script"><span data-i18n="quote_2">viết tiếp bản tình ca...</span><span class="quote-mark">”</span></span>
+            </h2>
+        </div>
+    </section>
+
+    <section class="fs-gallery-section">
+        <div class="fs-slide active" id="slide-1"><img src="Carousel 1.jpg" alt="Gallery 1"></div>
+        <div class="fs-slide" id="slide-2"><img src="Carousel 2.jpg" alt="Gallery 2"></div>
+        <div class="fs-slide" id="slide-3"><img src="Carousel 3.jpg" alt="Gallery 3"></div>
+        <div class="fs-overlay"></div>
+        <div class="fs-scroll-indicator">
+            <span>Our Chapters</span>
+            <div class="fs-line"></div>
+        </div>
+    </section>
+
+    <section class="interactive-venues">
+        <div class="sec-title" data-aos="fade-up">
+            <span>— Our Chapters —</span>
+            <h2 class="serif" data-i18n="venue_title">Nơi bản tình ca được cất lên</h2>
+        </div>
+
+        <div class="venue-split-container">
+            <div class="vs-card" data-aos="fade-up" onclick="toggleVenue(0)">
+                <div class="vs-reveal-mask"></div>
+                <div class="vs-bg"><img src="Venue1.png" alt="Da Lạt Wedding"></div>
+                <div class="vs-overlay-gradient"></div>
+                
+                <div class="vs-content">
+                    <h3 class="vs-title" data-i18n="intimate_party">Tiệc Thân Mật</h3>
+                    
+                    <div class="vs-trigger">
+                        <span data-i18n="detail_btn">Thông tin chi tiết</span>
+                        <svg class="chevron-anim" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    
+                    <div class="vs-details-wrapper">
+                        <div class="vs-details-inner">
+                            <div class="info-row">
+                                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                <div class="info-text">
+                                    <span class="info-label" data-i18n="time_label">Thời gian</span>
+                                    <span class="info-value" data-i18n="time_val_1">15h30 • Ngày 24/07/2026</span>
+                                </div>
+                            </div>
+                            <div class="info-row">
+                                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                <div class="info-text">
+                                    <span class="info-label" data-i18n="loc_label">Địa điểm</span>
+                                    <span class="info-value" data-i18n="loc_val_1">Sảnh Bistro, Hilly Garden<br>14C hẻm 22 Khe Sanh,<br>TP. Đà Lạt</span>
+                                </div>
+                            </div>
+                            <a href="https://maps.app.goo.gl/CoAHBfGNoAGn5NyM8" target="_blank" class="map-btn">
+                                <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"></polygon><line x1="9" y1="3" x2="9" y2="21"></line><line x1="15" y1="3" x2="15" y2="21"></line></svg>
+                                <span data-i18n="map_btn">Xem Bản Đồ</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vs-card" data-aos="fade-up" onclick="toggleVenue(1)">
+                <div class="vs-reveal-mask"></div>
+                <div class="vs-bg"><img src="Venue2.jpg" alt="HCM Wedding"></div>
+                <div class="vs-overlay-gradient"></div>
+                
+                <div class="vs-content">
+                    <h3 class="vs-title" data-i18n="wedding_party">Tiệc Cưới</h3>
+                    
+                    <div class="vs-trigger">
+                        <span data-i18n="detail_btn">Thông tin chi tiết</span>
+                        <svg class="chevron-anim" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    
+                    <div class="vs-details-wrapper">
+                        <div class="vs-details-inner">
+                            <div class="info-row">
+                                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                <div class="info-text">
+                                    <span class="info-label" data-i18n="time_label">Thời gian</span>
+                                    <span class="info-value" data-i18n="time_val_2">11h00 • Ngày 08/08/2026</span>
+                                </div>
+                            </div>
+                            <div class="info-row">
+                                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                <div class="info-text">
+                                    <span class="info-label" data-i18n="loc_label">Địa điểm</span>
+                                    <span class="info-value" data-i18n="loc_val_2">Sảnh Pearl, Asiana Plaza<br>45-47 Phan Đăng Lưu,<br>P. Gia Định, TP. HCM</span>
+                                </div>
+                            </div>
+                            <a href="https://maps.app.goo.gl/xvrmd6oVB3HKfuNEA" target="_blank" class="map-btn">
+                                <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"></polygon><line x1="9" y1="3" x2="9" y2="21"></line><line x1="15" y1="3" x2="15" y2="21"></line></svg>
+                                <span data-i18n="map_btn">Xem Bản Đồ</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="modern-cal-section" id="calendar-sec">
+        <div class="sec-title" style="margin-bottom: 30px;">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 15px;">
+                <div style="width: 30px; height: 1px; background: var(--wood-medium); opacity: 0.5;"></div>
+                <span style="font-family: 'Montserrat', sans-serif; font-size: 0.75rem; letter-spacing: 5px; text-transform: uppercase; color: var(--wood-dark); margin: 0; font-weight: 500;" data-i18n="save_the_date">Save The Date</span>
+                <div style="width: 30px; height: 1px; background: var(--wood-medium); opacity: 0.5;"></div>
+            </div>
+        </div>
+        
+        <div class="cal-wrapper">
+            <div class="cal-week-card cal-july" data-aos="fade-up" data-target-index="4"> 
+                <div class="cal-header">
+                    <span data-i18n="july">Tháng 7 . 2026</span>
+                    <b data-i18n="city_dl">Đà Lạt</b>
+                </div>
+                <div class="cal-row">
+                    <div class="cal-day"><span class="cd-name" data-i18n="mon">T2</span><span class="cd-num">20</span></div>
+                    <div class="cal-day"><span class="cd-name" data-i18n="tue">T3</span><span class="cd-num">21</span></div>
+                    <div class="cal-day"><span class="cd-name" data-i18n="wed">T4</span><span class="cd-num">22</span></div>
+                    <div class="cal-day"><span class="cd-name" data-i18n="thu">T5</span><span class="cd-num">23</span></div>
+                    <div class="cal-day target-day"><span class="cd-name" data-i18n="fri">T6</span><span class="cd-num">24</span></div>
+                    <div class="cal-day"><span class="cd-name" data-i18n="sat">T7</span><span class="cd-num">25</span></div>
+                    <div class="cal-day"><span class="cd-name" data-i18n="sun">CN</span><span class="cd-num">26</span></div>
+                </div>
+            </div>
+
+            <div class="cal-week-card cal-aug" data-aos="fade-up" data-aos-delay="200" data-target-index="5"> 
+                <div class="cal-header">
+                    <span data-i18n="aug">Tháng 8 . 2026</span>
+                    <b data-i18n="city_hcm">Hồ Chí Minh</b>
+                </div>
+                <div class="cal-row">
+                    <div class="cal-day"><span class="cd-name" data-i18n="mon">T2</span><span class="cd-num">03</span></div>
+                    <div class="cal-day"><span class="cd-name" data-i18n="tue">T3</span><span class="cd-num">04</span></div>
+                    <div class="cal-day"><span class="cd-name" data-i18n="wed">T4</span><span class="cd-num">05</span></div>
+                    <div class="cal-day"><span class="cd-name" data-i18n="thu">T5</span><span class="cd-num">06</span></div>
+                    <div class="cal-day"><span class="cd-name" data-i18n="fri">T6</span><span class="cd-num">07</span></div>
+                    <div class="cal-day target-day"><span class="cd-name" data-i18n="sat">T7</span><span class="cd-num">08</span></div>
+                    <div class="cal-day"><span class="cd-name" data-i18n="sun">CN</span><span class="cd-num">09</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="rsvp-section">
+        <div class="rsvp-aesthetic" data-aos="fade-up">
+            <span class="rsvp-label">R.S.V.P</span>
+            <h2 class="rsvp-simple-text" data-i18n="rsvp_desc">Sự hiện diện của anh/chị là những nốt nhạc hoàn hảo nhất cho ngày vui của chúng tôi!</h2>
+        </div>
+
+        <div class="form-window" data-aos="fade-up" data-aos-delay="200">
+            <div class="form-loader-overlay" id="formLoading">
+                <div class="form-loader-heart">♥</div>
+                <div class="form-loader-text" data-i18n="sending">Đang gửi thông tin...</div>
+            </div>
+
+            <form id="rsvpForm">
+                <div class="form-group">
+                    <label data-i18n="label_name">Tên của anh/chị là gì nhỉ? *</label>
+                    <input id="guestName" type="text" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label data-i18n="label_venue">Anh/chị sẽ chung vui cùng dâu rể ở đâu ta? *</label>
+                    <div class="form-radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="venue" value="both" required>
+                            <span data-i18n="opt_both">Quẩy trọn cả 2 nơi!</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="venue" value="dalat">
+                            <span data-i18n="opt_dl">Hilly Garden (Đà Lạt)</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="venue" value="hcm">
+                            <span data-i18n="opt_hcm">Asiana Plaza (TP.HCM)</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="venue" value="none">
+                            <span data-i18n="opt_none">Thật tiếc khi không thể góp mặt</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label data-i18n="label_guest">Anh/chị có đi cùng với ai không nhỉ?</label>
+                    
+                    <div class="custom-dropdown-wrapper" id="guestDropdownWrapper">
+                        <div class="custom-dropdown-selected" id="guestDropdownSelected" onclick="toggleGuestDropdown()">
+                            <span data-i18n="opt_select">Chọn số lượng...</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </div>
+                        <ul class="custom-dropdown-options">
+                            <li onclick="selectGuestOption('1', 'opt_1')" data-i18n="opt_1">Đi một mình</li>
+                            <li onclick="selectGuestOption('2', 'opt_2')" data-i18n="opt_2">2 người</li>
+                            <li onclick="selectGuestOption('3', 'opt_3')" data-i18n="opt_3">3 người</li>
+                        </ul>
+                        <input type="hidden" id="guestCount" name="guest_count" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label data-i18n="label_wishes">Lời nhắn gửi cho dâu rể (nếu có)</label>
+                    <textarea id="guestWishes" class="form-input" rows="3"></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <span data-i18n="btn_submit">Gửi thông tin</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="modern-footer">
+        <span class="f-subtitle">Release in Summer 2026</span>
+        <h2 class="f-title">
+            <span class="f-name" data-i18n="bride_name">Thiên Trang</span>
+            <div class="f-groom-row"><span class="f-ft">ft.</span><span class="f-name" data-i18n="groom_name">Khánh Dũng</span></div>
+        </h2>
+        <div class="f-bottom">
+            <div class="f-line"></div>
+            <span class="f-logo">The Melody of Romance</span>
+            <div class="f-line"></div>
+        </div>
+    </footer>
+
+    <div class="wedding-alert" id="weddingAlert">
+        <div class="wedding-alert-box">
+            <div class="alert-heart">♥</div>
+            <h3 data-i18n="alert_title">Cảm Ơn Anh/Chị</h3>
+            <p id="alertMsg" data-i18n="alert_msg">Cảm ơn anh/chị đã gửi lời nhắn cho tụi mình nhé!<br>Hẹn sớm gặp nhau trong ngày vui ♥</p>
+            <button id="closeAlertBtn" data-i18n="btn_close">Đóng</button>
+        </div>
+    </div>
+
+    <script>
+        // DICTIONARY FOR i18n
+        const translations = {
+            vi: {
+                page_title: "Thiên Trang & Khánh Dũng | The Melody of Romance",
+                bride_name: "Thiên Trang", groom_name: "Khánh Dũng",
+                mixing: "Mixing the love song...",
+                melody: "The Melody of Romance",
+                tap_continue: "Chạm để tiếp tục",
+                wedding_invitation: "Thư Mời Chung Vui",
+                city_dl: "Đà Lạt", city_hcm: "TP. HCM",
+                quote_1: "Giữa những ồn ào của thế gian, chỉ muốn bình yên nắm tay một người ",
+                quote_2: "viết tiếp bản tình ca...",
+                venue_title: "Nơi bản tình ca được cất lên",
+                intimate_party: "Tiệc Thân Mật", wedding_party: "Tiệc Cưới",
+                detail_btn: "Thông tin chi tiết", map_btn: "Xem Bản Đồ",
+                time_label: "Thời gian", loc_label: "Địa điểm",
+                time_val_1: "15h30 • Ngày 24/07/2026",
+                loc_val_1: "Sảnh Bistro, Hilly Garden<br>14C hẻm 22 Khe Sanh,<br>TP. Đà Lạt",
+                time_val_2: "11h00 • Ngày 08/08/2026",
+                loc_val_2: "Sảnh Pearl, Asiana Plaza<br>45-47 Phan Đăng Lưu,<br>P. Gia Định, TP. HCM",
+                save_the_date: "Save The Date",
+                july: "Tháng 7 . 2026", aug: "Tháng 8 . 2026",
+                mon: "T2", tue: "T3", wed: "T4", thu: "T5", fri: "T6", sat: "T7", sun: "CN",
+                rsvp_desc: "Sự hiện diện của anh/chị là những nốt nhạc hoàn hảo nhất cho ngày vui của chúng tôi!",
+                label_name: "Tên của anh/chị là gì nhỉ? *",
+                label_venue: "Anh/chị sẽ chung vui cùng dâu rể ở đâu ta? *",
+                opt_both: "Quẩy trọn cả 2 nơi!", opt_dl: "Hilly Garden (Đà Lạt)", opt_hcm: "Asiana Plaza (TP.HCM)", opt_none: "Sẽ chúc phúc từ xa (Không tham dự được)",
+                label_guest: "Anh/chị có đi cùng với ai không nhỉ?",
+                opt_select: "Chọn số lượng...", opt_1: "Đi một mình", opt_2: "2 người", opt_3: "3 người",
+                label_wishes: "Gửi gắm chút lời chúc cho dâu rể nhé! (Không bắt buộc)",
+                btn_submit: "Gửi thông tin", sending: "Đang gửi yêu thương...",
+                alert_title: "Cảm Ơn Anh/Chị", alert_msg: "Cảm ơn anh/chị đã gửi lời nhắn cho tụi mình nhé!<br>Hẹn sớm gặp nhau trong ngày vui ♥",
+                alert_msg_absent: "Cảm ơn anh/chị đã gửi lời chúc ấm áp đến tụi mình nhé! ♥",
+                btn_close: "Đóng", input_placeholder: "Ví dụ: Cường Đô La"
+            },
+            en: {
+                page_title: "Tracy & Justin | The Melody of Romance",
+                bride_name: "Tracy", groom_name: "Justin",
+                mixing: "Mixing the love song...",
+                melody: "The Melody of Romance",
+                tap_continue: "Tap to spin the record",
+                wedding_invitation: "Wedding Invitation",
+                city_dl: "Da Lat", city_hcm: "HCMC",
+                quote_1: "Amidst the noise of the world, I just want to peacefully hold your hand ",
+                quote_2: "and write our love song...",
+                venue_title: "Where our song plays",
+                intimate_party: "VOW Ceremony", wedding_party: "Wedding Party",
+                detail_btn: "View Details", map_btn: "View Map",
+                time_label: "Time", loc_label: "Location",
+                time_val_1: "3:30 PM • July 24, 2026",
+                loc_val_1: "Bistro Hall, Hilly Garden<br>14C Alley 22 Khe Sanh,<br>Da Lat City",
+                time_val_2: "11:00 AM • August 08, 2026",
+                loc_val_2: "Pearl Hall, Asiana Plaza<br>45-47 Phan Dang Luu St.,<br>Gia Dinh Ward, HCMC",
+                save_the_date: "Save The Date",
+                july: "July . 2026", aug: "August . 2026",
+                mon: "MON", tue: "TUE", wed: "WED", thu: "THU", fri: "FRI", sat: "SAT", sun: "SUN",
+                rsvp_desc: "Your presence is the perfect note to complete our melody!",
+                label_name: "What is your name? *",
+                label_venue: "Where will you be joining us? *",
+                opt_both: "Both locations!", opt_dl: "Hilly Garden (Da Lat)", opt_hcm: "Asiana Plaza (HCMC)", opt_none: "Celebrating from afar (Cannot attend)",
+                label_guest: "Will anyone be joining you?",
+                opt_select: "Select...", opt_1: "Just me", opt_2: "2 people", opt_3: "3 people",
+                label_wishes: "Leave a little note for the couple! (Optional)",
+                btn_submit: "Send RSVP", sending: "Sending our love...",
+                alert_title: "Thank You!", alert_msg: "Thank you for letting us know!<br>We can't wait to see you ♥",
+                alert_msg_absent: "Thank you so much for your warm wishes! ♥",
+                btn_close: "Close", input_placeholder: "e.g., John Doe"
+            }
+        };
+
+        let currentLang = 'vi';
+
+        // 1. HÀM XỬ LÝ KHI CLICK CHỌN NGÔN NGỮ 
+        function selectHarmonyLang(e, lang, buttonElement) {
+            if (buttonElement.classList.contains('selected')) return;
+            buttonElement.classList.add('selected');
+            
+            const screen = document.getElementById('lang-screen');
+            const initialLoader = document.getElementById('initial-loader');
+            const pBar = document.getElementById('p-bar');
+            const pHeart = document.getElementById('p-heart');
+
+            pBar.style.width = '0%';
+            pHeart.style.left = '0%';
+            
+            selectLanguageText(lang);
+
+            setTimeout(() => {
+                screen.classList.add('exiting');
+                initialLoader.classList.add('active');
+
+                setTimeout(() => {
+                    screen.style.display = 'none';
+                    
+                    pBar.style.width = '100%'; 
+                    pHeart.style.left = '100%';
+                    
+                    setTimeout(() => { 
+                        initialLoader.classList.remove('active'); 
+                        document.getElementById('preloader-content-wrap').classList.add('ready');
+                    }, 2600);
+
+                }, 800);
+            }, 350);
+        }
+
+        // 2. HÀM ĐỔI DATA DỊCH THUẬT NGÔN NGỮ KÈM CLASS ADAPTIVE SCALING
+        function selectLanguageText(lang) {
+            currentLang = lang;
+            document.body.setAttribute('data-lang', lang); 
+            document.getElementById('page-title').innerHTML = translations[lang].page_title;
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if(translations[lang][key]) el.innerHTML = translations[lang][key];
+            });
+            document.getElementById('guestName').placeholder = translations[lang].input_placeholder;
+            
+            // Cập nhật text cho Custom Dropdown đang được chọn
+            const selectedDropdownText = document.getElementById('guestDropdownSelected');
+            const currentSelectedKey = selectedDropdownText.dataset.currentKey || 'opt_select';
+            // Cập nhật lại HTML nhưng vẫn phải bọc SVG mũi tên
+            selectedDropdownText.innerHTML = `<span data-i18n="${currentSelectedKey}">${translations[lang][currentSelectedKey]}</span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>`;
+        }
+
+        // 3. LAZY TRIGGER AOS OBSERVER
+        const observerOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
+        const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting && entry.target.hasAttribute('data-aos')) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }); }, observerOptions);
+
+        // PRELOADER & ĐĨA THAN KHÓA SCROLL
+        const preloader = document.getElementById('preloader');
+        const turntableBtn = document.getElementById('playBtn');
+        const record = document.getElementById('record');
+        const bgMusic = document.getElementById('bgMusic');
+        const musicToggleBtn = document.getElementById('musicToggleBtn');
+        let isPlaying = false;
+
+        preloader.addEventListener('click', () => {
+            if(isPlaying) return; 
+            turntableBtn.classList.add('active'); 
+            record.classList.add('is-spinning'); 
+            
+            bgMusic.play().then(() => {
+                isPlaying = true;
+                musicToggleBtn.classList.remove('hidden'); 
+                musicToggleBtn.classList.add('playing');   
+            }).catch(e => console.log("Trình duyệt chặn Autoplay"));
+            
+            setTimeout(() => { 
+                preloader.classList.add('opened'); 
+                document.body.classList.remove('lock-scroll'); 
+
+                document.querySelector('.hero-master').classList.add('play-anim');
+                document.querySelectorAll('[data-aos]').forEach((el) => { observer.observe(el); });
+
+                calObserver.observe(document.getElementById('calendar-sec'));
+
+            }, 1800); 
+        });
+
+        // BẬT TẮT NHẠC GÓC PHẢI
+        musicToggleBtn.addEventListener('click', () => {
+            if (isPlaying) { bgMusic.pause(); musicToggleBtn.classList.remove('playing'); isPlaying = false; } 
+            else { bgMusic.play(); musicToggleBtn.classList.add('playing'); isPlaying = true; }
+        });
+
+        // SLIDESHOW & VENUES
+        const slides = document.querySelectorAll('.fs-slide');
+        let currentSlide = 0;
+        function nextSlide() { slides[currentSlide].classList.remove('active'); currentSlide = (currentSlide + 1) % slides.length; slides[currentSlide].classList.add('active'); }
+        setInterval(nextSlide, 4000);
+
+        // LOGIC MỞ THẺ ACCORDION CHO VENUES
+        function toggleVenue(selectedIndex) {
+            const cards = document.querySelectorAll('.vs-card');
+            cards.forEach((card, index) => {
+                if (index === selectedIndex) {
+                    if(!card.classList.contains('is-open')) {
+                        card.classList.add('is-open');
+                        spawnMusicNotes(card); 
+                    }
+                } else {
+                    card.classList.remove('is-open');
+                }
+            });
+        }
+
+        function spawnMusicNotes(cardElement) {
+            const notes = ['♪', '♫', '♬'];
+            const contentBox = cardElement.querySelector('.vs-content');
+            
+            for(let i=0; i<3; i++) {
+                const note = document.createElement('div');
+                note.className = 'music-burst';
+                note.innerText = notes[Math.floor(Math.random() * notes.length)];
+                
+                note.style.left = (15 + Math.random() * 20) + '%';
+                note.style.bottom = '100px';
+                note.style.animation = `floatMusic ${1.5 + Math.random()}s ease-out forwards`;
+                note.style.animationDelay = `${i * 0.15}s`;
+                
+                contentBox.appendChild(note);
+                setTimeout(() => note.remove(), 2500); 
+            }
+        }
+
+        // LOGIC CALENDAR SCANNING EFFECT
+        const calObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const weekCards = entry.target.querySelectorAll('.cal-week-card');
+                    weekCards.forEach((card, index) => {
+                        setTimeout(() => { scanCalendarDays(card); }, index * 600);
+                    });
+                    calObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.4 });
+
+        function scanCalendarDays(cardElement) {
+            const days = cardElement.querySelectorAll('.cal-day');
+            const targetIndex = parseInt(cardElement.getAttribute('data-target-index'));
+            let currentIndex = 0;
+
+            const scanInterval = setInterval(() => {
+                if(currentIndex > 0) { days[currentIndex - 1].classList.remove('scanning'); }
+
+                if (currentIndex <= targetIndex) {
+                    days[currentIndex].classList.add('scanning');
+                    currentIndex++;
+                } else {
+                    clearInterval(scanInterval);
+                    const finalDay = days[targetIndex];
+                    finalDay.classList.add('final-active');
+                    
+                    const heart = document.createElement('div');
+                    heart.className = 'cal-heart-splash';
+                    heart.innerHTML = '♥';
+                    heart.style.animation = 'splashHeart 1s ease-out forwards';
+                    finalDay.appendChild(heart);
+                }
+            }, 180); 
+        }
+
+        // LOGIC CHO CUSTOM DROPDOWN
+        function toggleGuestDropdown() {
+            const wrapper = document.getElementById('guestDropdownWrapper');
+            if(!wrapper.classList.contains('disabled')) {
+                wrapper.classList.toggle('open');
+            }
+        }
+
+        function selectGuestOption(value, textKey) {
+            document.getElementById('guestCount').value = value;
+            const selectedDiv = document.getElementById('guestDropdownSelected');
+            
+            // Cập nhật text nhưng vẫn giữ lại icon mũi tên
+            selectedDiv.innerHTML = `<span data-i18n="${textKey}">${translations[currentLang][textKey]}</span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>`;
+            selectedDiv.dataset.currentKey = textKey; // Lưu lại key để dịch lúc đổi ngôn ngữ
+            
+            document.getElementById('guestDropdownWrapper').classList.remove('open');
+        }
+
+        // Đóng dropdown khi click ra ngoài
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('#guestDropdownWrapper')) {
+                document.getElementById('guestDropdownWrapper').classList.remove('open');
+            }
+        });
+
+        // DISABLE CUSTOM DROPDOWN KHI CHỌN "KHÔNG THAM DỰ"
+        const radioButtons = document.querySelectorAll('input[name="venue"]');
+        const guestCountInput = document.getElementById('guestCount');
+        const dropdownWrapper = document.getElementById('guestDropdownWrapper');
+        const selectedDropdownDiv = document.getElementById('guestDropdownSelected');
+        
+        radioButtons.forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                if(e.target.value === 'none') {
+                    guestCountInput.value = "";
+                    dropdownWrapper.classList.add('disabled');
+                    // Reset text
+                    selectedDropdownDiv.innerHTML = `<span data-i18n="opt_select">${translations[currentLang].opt_select}</span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>`;
+                    selectedDropdownDiv.dataset.currentKey = 'opt_select';
+                } else {
+                    dropdownWrapper.classList.remove('disabled');
+                }
+            });
+        });
+
+        // RSVP FORM SUBMISSION
+        const rsvpForm = document.getElementById("rsvpForm");
+        const weddingAlert = document.getElementById("weddingAlert");
+        const closeAlertBtn = document.getElementById("closeAlertBtn");
+        const formLoading = document.getElementById("formLoading");
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzsppyjsmkjbq_uTLMH93KsLegQr92RlDeMLoSyhw4Oett2AcnIuQLYLE6xHo_RYr-8/exec";
+        
+        rsvpForm.addEventListener("submit", async function(e) {
+            e.preventDefault();
+            const selectedVenue = document.querySelector('input[name="venue"]:checked');
+            const guestCountVal = document.getElementById("guestCount").value;
+            
+            // Validate bổ sung vì dùng custom dropdown (input hidden không bị trình duyệt check required tốt)
+            if (selectedVenue && selectedVenue.value !== 'none' && guestCountVal === "") {
+                alert(currentLang === 'vi' ? "Vui lòng chọn số lượng người tham dự!" : "Please select the number of guests!");
+                return;
+            }
+
+            const formData = {
+                name: document.getElementById("guestName").value,
+                venue: selectedVenue ? selectedVenue.value : "",
+                guestCount: guestCountVal,
+                wishes: document.getElementById("guestWishes").value
+            };
+            
+            formLoading.classList.add("active");
+
+            try {
+                const formBody = new URLSearchParams();
+                formBody.append("name", formData.name);
+                formBody.append("venue", formData.venue);
+                formBody.append("guestCount", formData.guestCount);
+                formBody.append("wishes", formData.wishes);
+
+                await fetch(SCRIPT_URL, { method: "POST", mode: "no-cors", body: formBody });
+
+                formLoading.classList.remove("active");
+                
+                if(formData.venue === 'none') {
+                    document.getElementById('alertMsg').innerHTML = translations[currentLang].alert_msg_absent;
+                } else {
+                    document.getElementById('alertMsg').innerHTML = translations[currentLang].alert_msg;
+                }
+
+                weddingAlert.classList.add("show");
+                document.body.style.overflow = "hidden";
+                rsvpForm.reset();
+                
+                // Đặt lại giao diện custom dropdown
+                document.getElementById('guestCount').value = "";
+                selectedDropdownDiv.innerHTML = `<span data-i18n="opt_select">${translations[currentLang].opt_select}</span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>`;
+                selectedDropdownDiv.dataset.currentKey = 'opt_select';
+
+            } catch (err) {
+                console.error(err);
+                formLoading.classList.remove("active");
+                alert("Có lỗi xảy ra, vui lòng thử lại sau!");
+            }
+        });
+
+        function closeWeddingAlert() { weddingAlert.classList.remove("show"); document.body.style.overflow = ""; }
+        closeAlertBtn.addEventListener("click", closeWeddingAlert);
+        weddingAlert.addEventListener("click", function(e) { if (e.target === weddingAlert) { closeWeddingAlert(); } });
+    </script>
+</body>
+</html>
